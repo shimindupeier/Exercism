@@ -1,15 +1,9 @@
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.LocalTime
+import java.time.LocalDate
 
-class Gigasecond {
-    private var localDateTime: LocalDateTime = LocalDateTime.now()
+class Gigasecond(moment: LocalDateTime, dummy: LocalDateTime?) {
 
-    constructor(localDateTime: LocalDateTime, dummy: LocalDateTime?) {
-        this.localDateTime = localDateTime
-    }
-    // TODO: Implement proper constructor
-    constructor(localDate: LocalDate) {this.localDateTime = localDate.atStartOfDay()}
+    constructor(localDate: LocalDate): this(localDate.atStartOfDay(), LocalDateTime.now())
 
-    val date: LocalDateTime by lazy { localDateTime.plusSeconds(1000000000) }
+    val date: LocalDateTime by lazy { moment.plusSeconds(1000000000) }
 }
