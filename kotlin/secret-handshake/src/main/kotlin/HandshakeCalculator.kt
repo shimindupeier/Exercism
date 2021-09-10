@@ -12,8 +12,6 @@ object HandshakeCalculator {
                 4 -> if (v == 1) signalList = signalList.asReversed()
             }
         }
-        
         return signalList
-
     }
 }
