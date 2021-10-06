@@ -56,7 +56,10 @@ class TransposeTest {
 
     @Test
     fun `mixed line length`() {
-        val lines = listOf("The longest line.", "A long line.", "A longer line.", "A line.")
+        val lines = listOf( "The longest line.",
+                            "A long line.",
+                            "A longer line.",
+                            "A line.")
         val expected = listOf("TAAA", "h   ", "elll", " ooi", "lnnn", "ogge", "n e.", "glr", "ei ", "snl", "tei", " .n", "l e", "i .", "n", "e", ".")
         assertEquals(expected, Transpose.transpose(lines))
     }
