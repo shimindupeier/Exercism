@@ -42,14 +42,26 @@ class TransposeTest {
 
     @Test
     fun `first line longer than second line`() {
-        val lines = listOf("The fourth line.", "The fifth line.")
+        val lines = listOf( "The fourth line.",
+                            "The fifth line.")
         val expected = listOf("TT", "hh", "ee", "  ", "ff", "oi", "uf", "rt", "th", "h ", " l", "li", "in", "ne", "e.", ".")
         assertEquals(expected, Transpose.transpose(lines))
     }
 
     @Test
+    fun `simple mixed line length`() {
+        val lines = listOf("aa bb ccc",
+                           "aa b",
+                           "aa bb c",
+                           "a")
+        val expected = listOf("aaaa", "aaa", "   ", "bbb", "b b", "   ", "c c", "c", "c")
+        assertEquals(expected, Transpose.transpose(lines))
+    }
+
+    @Test
     fun `second line longer than first line`() {
-        val lines = listOf("The first line.", "The second line.")
+        val lines = listOf( "The first line.",
+                            "The second line.")
         val expected = listOf("TT", "hh", "ee", "  ", "fs", "ie", "rc", "so", "tn", " d", "l ", "il", "ni", "en", ".e", " .")
         assertEquals(expected, Transpose.transpose(lines))
     }
