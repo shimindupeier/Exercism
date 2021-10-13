@@ -1,6 +1,9 @@
-data class Year(val todo: Nothing) {
+data class Year(val year: Int) {
 
-    // TODO: Implement proper constructor
+    private val yr = this.year
 
-    val isLeap: Boolean = TODO("Implement this getter to complete the task")
+    val isLeap: Boolean =
+      if (yr.rem(100 ) == 0) {
+          yr.rem(400) == 0
+      } else yr.rem(4) == 0
 }
