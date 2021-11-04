@@ -7,14 +7,19 @@ object CryptoSquare {
         return if (plaintext.isEmpty()) "" else {
             val condensedStr = plaintext.toLowerCase().trim().replace(Regex("\\p{Punct}|\\s"), "")
             val strLength = condensedStr.count()
-            val c = sqrt(strLength.toDouble()).roundToInt()
-            val r = strLength.div(c)
-            val grid = condensedStr.windowed(c,c).toList()
+            var c = sqrt(strLength.toDouble()).roundToInt()
+            var r = strLength.toDouble().div(c).roundToInt()
+            if (c < r) {
+                val tmp = c
+                c = r
+                r = tmp
+            }
+            val grid = condensedStr.windowed(c,c, true).toList().map { it.padEnd(c) }
             val tmpList = mutableListOf<String>()
             var tmpString = ""
-            for (i in 0 until r) {
-                for (j in 0 until c) {
-                    tmpString += grid[j][i].toString()
+            for (i in 0 until c) {
+                for (j in 0 until r) {
+                    tmpString += grid[j][i]
                 }
                 tmpList.add(tmpString)
                 tmpString = ""
