@@ -13,12 +13,12 @@ object CryptoSquare {
                 c < r -> r
                 else -> c
             }
-            val row = when {
+            /*val row = when {
                 c < r -> c
                 else -> r
-            }
+            }*/
             val grid = condensedStr.windowed(col, col, true).toList().map { it.padEnd(col) }
-            val tmpList = mutableListOf<String>()
+            /*val tmpList = mutableListOf<String>()
             var tmpString = ""
             for (i in 0 until col) {
                 for (j in 0 until row) {
@@ -26,8 +26,11 @@ object CryptoSquare {
                 }
                 tmpList.add(tmpString)
                 tmpString = ""
-            }
-            return tmpList.joinToString(" ")
+            }*/
+            return (0 until col).joinToString(" ") { i -> grid.map { it[i] }.joinToString("") }
+            //return (0 until col).map { i -> grid.map { it[i] }.joinToString("") }.joinToString(" ")
+            //return tmpList.joinToString(" ")
+
         }
     }
 
