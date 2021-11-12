@@ -5,15 +5,15 @@ object Hamming {
         if (leftStrand.length != rightStrand.length)
             throw IllegalArgumentException("left and right strands must be of equal length")
 
-        if (leftStrand.isBlank()
-            || leftStrand == rightStrand
-        ) return 0
-
-        val listLS = leftStrand.toList()
-        val listRS = rightStrand.toList()
-        var distance = 0
-        listLS.forEachIndexed { index, c -> if (listRS[index].toString() != c.toString()) distance += 1 }
-
-        return distance
+        return if (leftStrand.isBlank() || leftStrand == rightStrand) {
+            0
+        } else {
+            val listLS = leftStrand.toList()
+            val listRS = rightStrand.toList()
+            listLS.zip(listRS).filter { it.first != it.second }.sumBy { +1 }
+        }
     }
 }
+
+
+
