@@ -1,21 +1,21 @@
-class CustomSet() {
+class CustomSet(vararg x: Int) {
+    private val s = x.toSet()
 
     // TODO: implement proper constructor
-
     fun isEmpty(): Boolean {
-        TODO("Implement this function to complete the task")
+        return s.isEmpty()
     }
 
     fun isSubset(other: CustomSet): Boolean {
-        TODO("Implement this function to complete the task")
+        return s.all { it in other }
     }
 
     fun isDisjoint(other: CustomSet): Boolean {
         TODO("Implement this function to complete the task")
     }
 
-    fun contains(other: Int): Boolean {
-        TODO("Implement this function to complete the task")
+    operator fun contains(other: Int): Boolean {
+        return other in s
     }
 
     fun intersection(other: CustomSet): CustomSet {
