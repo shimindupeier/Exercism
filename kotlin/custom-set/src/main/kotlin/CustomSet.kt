@@ -1,5 +1,5 @@
 class CustomSet(vararg x: Int) {
-    private val s = x.toSet()
+    private val s = x.toMutableSet()
 
     // TODO: implement proper constructor
     fun isEmpty(): Boolean {
@@ -11,23 +11,26 @@ class CustomSet(vararg x: Int) {
     }
 
     fun isDisjoint(other: CustomSet): Boolean {
-        TODO("Implement this function to complete the task")
+        return !s.any { other.contains(it) }
     }
 
     operator fun contains(other: Int): Boolean {
         return other in s
     }
 
-    fun intersection(other: CustomSet): CustomSet {
-        TODO("Implement this function to complete the task")
-    }
+    // https://stackoverflow.com/questions/39389003/kotlin-asterisk-operator-before-variable-name-or-spread-operator-in-kotlin
+    fun intersection(other: CustomSet): CustomSet = CustomSet(*(s.intersect(other.s)).toIntArray())
 
     fun add(other: Int) {
-        TODO("Implement this function to complete the task")
+        s.add(other)
     }
 
     override fun equals(other: Any?): Boolean {
-        TODO("Implement this function to complete the task")
+        return if (other !is CustomSet) {
+                false
+            } else {
+                s == other.s
+        }
     }
 
     operator fun plus(other: CustomSet): CustomSet {
@@ -35,6 +38,10 @@ class CustomSet(vararg x: Int) {
     }
 
     operator fun minus(other: CustomSet): CustomSet {
-        TODO("Implement this function to complete the task")
+        return if (s.isEmpty()) {
+            CustomSet(*(emptySet<Int>().toIntArray()))
+        } else {
+            CustomSet(*(s.filter { !other.contains(it) }.toIntArray()))
+        }
     }
 }
