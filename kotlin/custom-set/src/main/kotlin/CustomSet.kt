@@ -34,7 +34,11 @@ class CustomSet(vararg x: Int) {
     }
 
     operator fun plus(other: CustomSet): CustomSet {
-        TODO("Implement this function to complete the task")
+        return if (s.isEmpty() && other.isEmpty()) {
+            CustomSet(*(emptySet<Int>().toIntArray()))
+        } else {
+            CustomSet(*(s + other.s).toIntArray())
+        }
     }
 
     operator fun minus(other: CustomSet): CustomSet {
@@ -43,5 +47,9 @@ class CustomSet(vararg x: Int) {
         } else {
             CustomSet(*(s.filter { !other.contains(it) }.toIntArray()))
         }
+    }
+
+    override fun hashCode(): Int {
+        return s.hashCode()
     }
 }
