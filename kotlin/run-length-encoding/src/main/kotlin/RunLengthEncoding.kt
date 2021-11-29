@@ -31,7 +31,7 @@ object RunLengthEncoding {
             splitStr.map {
                 val d = it.first().toIntOrNull()
                 if (d != null) {
-                    for (i in 1..(d.toInt())) outputStr += it.last()
+                    for (i in 1..(d)) outputStr += it.last()
                 } else {
                     outputStr += it.last()
                 }
