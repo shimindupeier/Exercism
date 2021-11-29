@@ -17,8 +17,6 @@ object RunLengthEncoding {
             }
             splitList.add(s)
             val output = splitList.joinToString("") { (if (it.length > 1) it.length.toString() else "") + it.first() }
-//            println(splitList)
-//            println(output)
             output
         }
     }
