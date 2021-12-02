@@ -25,16 +25,22 @@ class Scale(private val tonic: String) {
             startIndex = chromaticScaleSharp.indexOf(tonic.replaceFirstChar { it.uppercase() })
             scale.add(tonic.replaceFirstChar { it.uppercase() })
             for (i in intervalList.dropLast(1).indices) {
-                if (intervalList[i] == "M") {
-                    startIndex += 2
-                    scale.add(chromaticScaleSharp[startIndex])
-                } else if (intervalList[i] == "m") {
-                    startIndex += 1
-                    scale.add(chromaticScaleSharp[startIndex])
-                } else if (intervalList[i] == "A") {
-                    startIndex += 3
-                    scale.add(chromaticScaleSharp[startIndex])
+                when (intervalList[i]) {
+                    "M" -> startIndex += 2
+                    "m" -> startIndex += 1
+                    "A" -> startIndex += 3
                 }
+                scale.add(chromaticScaleSharp[startIndex])
+//                if (intervalList[i] == "M") {
+//                    startIndex += 2
+//                    scale.add(chromaticScaleSharp[startIndex])
+//                } else if (intervalList[i] == "m") {
+//                    startIndex += 1
+//                    scale.add(chromaticScaleSharp[startIndex])
+//                } else if (intervalList[i] == "A") {
+//                    startIndex += 3
+//                    scale.add(chromaticScaleSharp[startIndex])
+//                }
             }
         } else {
             startIndex = chromaticScaleFlat.indexOf(tonic.replaceFirstChar { it.uppercase() })
