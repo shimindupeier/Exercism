@@ -5,6 +5,13 @@ object Wordy {
     fun answer(input: String): Int {
 
         val operators = listOf("plus", "minus", "multiplied", "divided", "cubed", "power")
+        if (input.contains("power")) {
+            val log = input.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)".toRegex())
+                .filter { isNumber(it) }
+            val x = log[0].toDouble()
+            val y = log[1].toDouble()
+            return x.pow(y).toInt()
+        }
         val strList: List<String> = parseString(input)
         for (s in 0 until strList.size - 1) {
             if ((isNumber(strList[s]) && isNumber(strList[s + 1])) ||
