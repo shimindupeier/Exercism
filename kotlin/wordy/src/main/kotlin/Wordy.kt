@@ -1,41 +1,55 @@
+import kotlin.math.pow
+
 object Wordy {
 
     fun answer(input: String): Int {
+
+        val operators = listOf("plus", "minus", "multiplied", "divided", "cubed", "power")
         val strList: List<String> = parseString(input)
+        for (s in 0 until strList.size - 1) {
+            if ((isNumber(strList[s]) && isNumber(strList[s + 1])) ||
+                !isNumber(strList[s]) && !isNumber(strList[s + 1])
+            )
+                throw Exception()
+        }
         val operands = strList.filter { isNumber(it) }.map { n -> n.toInt() }
-        val operations = strList.filterNot { isNumber(it) }.toList()
+        val operations = strList.filter { operators.contains(it) }.toList()
+        var result = 0
 
         return when {
-            operations.isEmpty() -> operands[0]
-            operations.size == 1 -> {
-                val x = operands[0]
-                val y = operands[1]
-                when (operations[0]) {
-                    "plus" -> x.plus(y)
-                    "minus" -> x.minus(y)
-                    else -> -1
-                }
-            }
-            operations.size == 2 && operands.size == 2 -> {
-                val x = operands[0]
-                val y = operands[1]
-                if (operations.contains("multiplied")) x.times(y)
-                else x.div(y)
-            }
-            operations.size > 1 -> {
-                var result = 0
+            operations.isEmpty() && operands.size == 1 -> operands[0]
+            operations.isNotEmpty() -> {
                 val tmpOperands = operands.toMutableList()
                 for (i in operations.indices) {
-                    result = if (operations[i] == "plus") {
-                        tmpOperands[i].plus(tmpOperands[i + 1])
-                    } else {
-                        tmpOperands[i].minus(tmpOperands[i + 1])
+                    val op = operations[i]
+                    result = when (op) {
+                        "plus" -> {
+                            tmpOperands[i].plus(tmpOperands[i + 1])
+                        }
+                        "minus" -> {
+                            tmpOperands[i].minus(tmpOperands[i + 1])
+                        }
+                        "multiplied" -> {
+                            tmpOperands[i].times(tmpOperands[i + 1])
+                        }
+                        "divided" -> {
+                            tmpOperands[i].div(tmpOperands[i + 1])
+                        }
+                        "cubed" -> {
+                            throw Exception()
+                        }
+                        "power" -> {
+                            tmpOperands[i].toDouble().pow(tmpOperands[i + 1].toDouble()).toInt()
+                        }
+                        else -> {
+                            tmpOperands[i]
+                        }
                     }
-                    tmpOperands[i+1] = result
+                    tmpOperands[i + 1] = result
                 }
                 result
             }
-            else -> -1
+            else -> throw Exception()
         }
     }
 
@@ -48,8 +62,9 @@ object Wordy {
         }
     }
 
-    private fun parseString(i: String): List<String> =
+    private fun parseString(i: String) =
         i.split("[\\s]".toRegex())
             .map { it.replace("[?]".toRegex(), "") }
+            .filter { it != "by" }
             .drop(2)
 }
