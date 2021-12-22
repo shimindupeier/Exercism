@@ -20,11 +20,9 @@ class YachtTest {
     @Test
     fun `no ones`() = assertEquals(0, Yacht.solve(ONES, 4, 3, 6, 5, 5))
 
-    @Ignore
     @Test
     fun twos() = assertEquals(2, Yacht.solve(TWOS, 2, 3, 4, 5, 6))
 
-    @Ignore
     @Test
     fun fours() = assertEquals(8, Yacht.solve(FOURS, 1, 4, 1, 4, 1))
 
