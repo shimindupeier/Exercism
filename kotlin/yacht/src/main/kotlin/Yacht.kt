@@ -17,6 +17,18 @@ object Yacht {
                 }
                 score
             }
+            YachtCategory.THREES -> {
+                val score = dices.fold(0) {
+                        acc, i -> if (i == 3) acc + i else acc
+                }
+                score
+            }
+            YachtCategory.FOURS -> {
+                val score = dices.fold(0) {
+                        acc, i -> if (i == 4) acc + i else acc
+                }
+                score
+            }
             else -> 0
         }
     }

@@ -26,11 +26,9 @@ class YachtTest {
     @Test
     fun fours() = assertEquals(8, Yacht.solve(FOURS, 1, 4, 1, 4, 1))
 
-    @Ignore
     @Test
     fun `yacht counted as threes`() = assertEquals(15, Yacht.solve(THREES, 3, 3, 3, 3, 3))
 
-    @Ignore
     @Test
     fun `yacht of threes counted as fives`() = assertEquals(0, Yacht.solve(FIVES, 3, 3, 3, 3, 3))
 
