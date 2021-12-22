@@ -11,6 +11,7 @@ object Yacht {
                 }
                 output
             }
+
             else -> 0
         }
     }

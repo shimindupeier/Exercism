@@ -14,11 +14,9 @@ class YachtTest {
     @Test
     fun ones() = assertEquals(3, Yacht.solve(ONES, 1, 1, 1, 3, 5))
 
-    @Ignore
     @Test
     fun `ones out of order`() = assertEquals(3, Yacht.solve(ONES, 3, 1, 1, 5, 1))
 
-    @Ignore
     @Test
     fun `no ones`() = assertEquals(0, Yacht.solve(ONES, 4, 3, 6, 5, 5))
 
