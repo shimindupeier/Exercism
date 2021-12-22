@@ -35,6 +35,19 @@ object Yacht {
                 }
                 score
             }
+            YachtCategory.SIXES -> {
+                val score = dices.fold(0) {
+                        acc, i -> if (i == 6) acc + i else acc
+                }
+                score
+            }
+            YachtCategory.FULL_HOUSE -> {
+                val groups: Map<Int, Int> = dices.toList().groupingBy { it }.eachCount()
+                val score = if (groups.containsValue(3)) dices.reduce {
+                    sum, element -> sum + element
+                } else 0
+                score
+            }
             else -> 0
         }
     }
