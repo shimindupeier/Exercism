@@ -6,40 +6,22 @@ object Yacht {
                 if (dices.distinct().size == 1) 50 else 0
             }
             YachtCategory.ONES -> {
-                val score = dices.fold(0) {
-                        acc, i -> if (i == 1) acc + i else acc
-                }
-                score
+                increment(dices, 1)
             }
             YachtCategory.TWOS -> {
-                val score = dices.fold(0) {
-                        acc, i -> if (i == 2) acc + i else acc
-                }
-                score
+                increment(dices, 2)
             }
             YachtCategory.THREES -> {
-                val score = dices.fold(0) {
-                        acc, i -> if (i == 3) acc + i else acc
-                }
-                score
+                increment(dices, 3)
             }
             YachtCategory.FOURS -> {
-                val score = dices.fold(0) {
-                        acc, i -> if (i == 4) acc + i else acc
-                }
-                score
+                increment(dices, 4)
             }
             YachtCategory.FIVES -> {
-                val score = dices.fold(0) {
-                        acc, i -> if (i == 5) acc + i else acc
-                }
-                score
+                increment(dices, 5)
             }
             YachtCategory.SIXES -> {
-                val score = dices.fold(0) {
-                        acc, i -> if (i == 6) acc + i else acc
-                }
-                score
+                increment(dices, 6)
             }
             YachtCategory.FULL_HOUSE -> {
                 val groups: Map<Int, Int> = dices.toList().groupingBy { it }.eachCount()
@@ -56,25 +38,30 @@ object Yacht {
             }
             YachtCategory.LITTLE_STRAIGHT -> {
                 val groups = dices.sorted()
-                return if ( groups.first() != 1 || groups.last() != 5) 0
-                else {
-                    val checkingList = groups.windowed(2, 1)
-                    val checkSet = checkingList.map { it.last().minus(it.first()) == 1 }.toSet()
-                    if (checkSet.size == 1 && checkSet.contains(true)) 30 else 0
-                }
+                checkStraight(groups, 1, 5)
             }
             YachtCategory.BIG_STRAIGHT -> {
                 val groups = dices.sorted()
-                return if (groups.first() != 2 || groups.last() != 6) 0
-                else {
-                    val listToCheckInc = groups.windowed(2, 1)
-                    val setToCheckInc = listToCheckInc.map { it.last().minus(it.first()) == 1 }.toSet()
-                    if (setToCheckInc.size == 1 && setToCheckInc.contains(true)) 30 else 0
-                }
+                checkStraight(groups, 2, 6)
             }
             YachtCategory.CHOICE -> {
                 dices.fold(0) {acc, ele -> acc + ele}
             }
         }
+    }
+
+    private fun checkStraight(groups: List<Int>, firstNum: Int, lastNum: Int) =
+        if (groups.first() != firstNum || groups.last() != lastNum) 0
+        else {
+            val checkingList = groups.windowed(2, 1)
+            val checkSet = checkingList.map { it.last().minus(it.first()) == 1 }.toSet()
+            if (checkSet.size == 1 && checkSet.contains(true)) 30 else 0
+        }
+
+    private fun increment(dices: IntArray, num: Int): Int {
+        val score = dices.fold(0) { acc, i ->
+            if (i == num) acc + i else acc
+        }
+        return score
     }
 }
