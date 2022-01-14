@@ -14,10 +14,7 @@ object Yacht {
                 if (dices.groupBy { it }.values.map { it.size }.toSet() == setOf(2, 3)) dices.sum() else 0
             }
             FOUR_OF_A_KIND -> {
-                val groups: Map<Int, Int> = dices.toList().groupingBy { it }.eachCount()
-                val num = groups.filterValues { it >= 4 }.keys
-                val score = if (num.isEmpty()) 0 else num.first().times(4)
-                score
+                dices.groupBy { it }.values.first { it.size >= 4 }.take(4).sum()
             }
             LITTLE_STRAIGHT -> {
                 val groups = dices.sorted().toSet()
