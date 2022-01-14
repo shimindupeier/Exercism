@@ -1,5 +1,3 @@
-import kotlin.math.pow
-
 object Yacht {
 
     fun solve(category: YachtCategory, vararg dices: Int): Int {
@@ -60,12 +58,23 @@ object Yacht {
                 val groups = dices.sorted()
                 return if ( groups.first() != 1 || groups.last() != 5) 0
                 else {
-                    val f = groups.windowed(2, 1)
-                    val s = f.map { it.last().minus(it.first()) == 1 }.toSet()
-                    if (s.size == 1 && s.contains(true)) 30 else 0
+                    val checkingList = groups.windowed(2, 1)
+                    val checkSet = checkingList.map { it.last().minus(it.first()) == 1 }.toSet()
+                    if (checkSet.size == 1 && checkSet.contains(true)) 30 else 0
                 }
             }
-            else -> 0
+            YachtCategory.BIG_STRAIGHT -> {
+                val groups = dices.sorted()
+                return if (groups.first() != 2 || groups.last() != 6) 0
+                else {
+                    val listToCheckInc = groups.windowed(2, 1)
+                    val setToCheckInc = listToCheckInc.map { it.last().minus(it.first()) == 1 }.toSet()
+                    if (setToCheckInc.size == 1 && setToCheckInc.contains(true)) 30 else 0
+                }
+            }
+            YachtCategory.CHOICE -> {
+                dices.fold(0) {acc, ele -> acc + ele}
+            }
         }
     }
 }

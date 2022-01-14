@@ -75,23 +75,18 @@ class YachtTest {
     fun `minimum is 1 maximum is 5 but not a little straight`() =
         assertEquals(0, Yacht.solve(LITTLE_STRAIGHT, 1, 1, 3, 4, 5))
 
-    @Ignore
     @Test
     fun `big straight`() = assertEquals(30, Yacht.solve(BIG_STRAIGHT, 4, 6, 2, 5, 3))
 
-    @Ignore
     @Test
     fun `big straight as little straight`() = assertEquals(0, Yacht.solve(LITTLE_STRAIGHT, 6, 5, 4, 3, 2))
 
-    @Ignore
     @Test
     fun `no pairs but not a big straight`() = assertEquals(0, Yacht.solve(BIG_STRAIGHT, 6, 5, 4, 3, 1))
 
-    @Ignore
     @Test
     fun choice() = assertEquals(23, Yacht.solve(CHOICE, 3, 3, 5, 6, 6))
 
-    @Ignore
     @Test
     fun `yacht as choice`() = assertEquals(10, Yacht.solve(CHOICE, 2, 2, 2, 2, 2))
 }
