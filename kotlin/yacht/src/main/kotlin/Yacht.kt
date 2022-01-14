@@ -24,8 +24,9 @@ object Yacht {
                 score
             }
             LITTLE_STRAIGHT -> {
-                val groups = dices.sorted()
-                checkStraight(groups, 1, 5)
+                val groups = dices.sorted().toSet()
+                if (groups == setOf(1,2,3,4,5)) 30 else 0
+                //checkStraight(groups, 1, 5)
             }
             BIG_STRAIGHT -> {
                 val groups = dices.sorted()
