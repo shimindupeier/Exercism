@@ -32,39 +32,30 @@ class YachtTest {
     @Test
     fun `yacht of threes counted as fives`() = assertEquals(0, Yacht.solve(FIVES, 3, 3, 3, 3, 3))
 
-    @Ignore
     @Test
     fun sixes() = assertEquals(6, Yacht.solve(SIXES, 2, 3, 4, 5, 6))
 
-    @Ignore
     @Test
     fun `full house two small three big`() = assertEquals(16, Yacht.solve(FULL_HOUSE, 2, 2, 4, 4, 4))
 
-    @Ignore
     @Test
     fun `full house three small two big`() = assertEquals(19, Yacht.solve(FULL_HOUSE, 5, 3, 3, 5, 3))
 
-    @Ignore
     @Test
     fun `two pair is not a full house`() = assertEquals(0, Yacht.solve(FULL_HOUSE, 2, 2, 4, 4, 5))
 
-    @Ignore
     @Test
     fun `four of a kind is not a full house`() = assertEquals(0, Yacht.solve(FULL_HOUSE, 1, 4, 4, 4, 4))
 
-    @Ignore
     @Test
     fun `yacht is not a full house`() = assertEquals(0, Yacht.solve(FULL_HOUSE, 2, 2, 2, 2, 2))
 
-    @Ignore
     @Test
     fun `four of a kind`() = assertEquals(24, Yacht.solve(FOUR_OF_A_KIND, 6, 6, 4, 6, 6))
 
-    @Ignore
     @Test
     fun `yacht can be scored as four of a kind`() = assertEquals(12, Yacht.solve(FOUR_OF_A_KIND, 3, 3, 3, 3, 3))
 
-    @Ignore
     @Test
     fun `full house is not four of a kind`() = assertEquals(0, Yacht.solve(FOUR_OF_A_KIND, 3, 3, 3, 5, 5))
 

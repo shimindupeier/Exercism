@@ -1,3 +1,5 @@
+import kotlin.math.pow
+
 object Yacht {
 
     fun solve(category: YachtCategory, vararg dices: Int): Int {
@@ -46,6 +48,12 @@ object Yacht {
                 val score = if (groups.containsValue(3)) dices.reduce {
                     sum, element -> sum + element
                 } else 0
+                score
+            }
+            YachtCategory.FOUR_OF_A_KIND -> {
+                val groups: Map<Int, Int> = dices.toList().groupingBy { it }.eachCount()
+                val num = groups.filterValues { it >= 4 }.keys
+                val score = if (num.isEmpty()) 0 else num.first().times(4)
                 score
             }
             else -> 0
