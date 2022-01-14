@@ -59,23 +59,18 @@ class YachtTest {
     @Test
     fun `full house is not four of a kind`() = assertEquals(0, Yacht.solve(FOUR_OF_A_KIND, 3, 3, 3, 5, 5))
 
-    @Ignore
     @Test
     fun `little straight`() = assertEquals(30, Yacht.solve(LITTLE_STRAIGHT, 3, 5, 4, 1, 2))
 
-    @Ignore
     @Test
     fun `little straight as big straight`() = assertEquals(0, Yacht.solve(BIG_STRAIGHT, 1, 2, 3, 4, 5))
 
-    @Ignore
     @Test
     fun `four in order but not a little straight`() = assertEquals(0, Yacht.solve(LITTLE_STRAIGHT, 1, 1, 2, 3, 4))
 
-    @Ignore
     @Test
     fun `no pairs but not a little straight`() = assertEquals(0, Yacht.solve(LITTLE_STRAIGHT, 1, 2, 3, 4, 6))
 
-    @Ignore
     @Test
     fun `minimum is 1 maximum is 5 but not a little straight`() =
         assertEquals(0, Yacht.solve(LITTLE_STRAIGHT, 1, 1, 3, 4, 5))
