@@ -29,8 +29,9 @@ object Yacht {
                 //checkStraight(groups, 1, 5)
             }
             BIG_STRAIGHT -> {
-                val groups = dices.sorted()
-                checkStraight(groups, 2, 6)
+                val groups = dices.sorted().toSet()
+                if (groups == setOf(2,3,4,5,6)) 30 else 0
+                //checkStraight(groups, 2, 6)
             }
             CHOICE -> {
                 dices.sum()
