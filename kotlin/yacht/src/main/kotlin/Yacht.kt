@@ -1,51 +1,50 @@
+import YachtCategory.*
+
 object Yacht {
 
     fun solve(category: YachtCategory, vararg dices: Int): Int {
         return when ( category ) {
-            YachtCategory.YACHT -> {
+            YACHT -> {
                 if (dices.distinct().size == 1) 50 else 0
             }
-            YachtCategory.ONES -> {
-                increment(dices, 1)
+            ONES, TWOS -> {
+                increment(dices, category.ordinal)
             }
-            YachtCategory.TWOS -> {
-                increment(dices, 2)
-            }
-            YachtCategory.THREES -> {
+            THREES -> {
                 increment(dices, 3)
             }
-            YachtCategory.FOURS -> {
+            FOURS -> {
                 increment(dices, 4)
             }
-            YachtCategory.FIVES -> {
+            FIVES -> {
                 increment(dices, 5)
             }
-            YachtCategory.SIXES -> {
+            SIXES -> {
                 increment(dices, 6)
             }
-            YachtCategory.FULL_HOUSE -> {
+            FULL_HOUSE -> {
                 val groups: Map<Int, Int> = dices.toList().groupingBy { it }.eachCount()
                 val score = if (groups.containsValue(3)) dices.fold(0) {
                     sum, element -> sum + element
                 } else 0
                 score
             }
-            YachtCategory.FOUR_OF_A_KIND -> {
+            FOUR_OF_A_KIND -> {
                 val groups: Map<Int, Int> = dices.toList().groupingBy { it }.eachCount()
                 val num = groups.filterValues { it >= 4 }.keys
                 val score = if (num.isEmpty()) 0 else num.first().times(4)
                 score
             }
-            YachtCategory.LITTLE_STRAIGHT -> {
+            LITTLE_STRAIGHT -> {
                 val groups = dices.sorted()
                 checkStraight(groups, 1, 5)
             }
-            YachtCategory.BIG_STRAIGHT -> {
+            BIG_STRAIGHT -> {
                 val groups = dices.sorted()
                 checkStraight(groups, 2, 6)
             }
-            YachtCategory.CHOICE -> {
-                dices.fold(0) {acc, ele -> acc + ele}
+            CHOICE -> {
+                dices.sum()
             }
         }
     }
