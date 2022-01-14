@@ -7,20 +7,8 @@ object Yacht {
             YACHT -> {
                 if (dices.distinct().size == 1) 50 else 0
             }
-            ONES, TWOS -> {
+            ONES, TWOS, THREES, FOURS, FIVES, SIXES -> {
                 increment(dices, category.ordinal)
-            }
-            THREES -> {
-                increment(dices, 3)
-            }
-            FOURS -> {
-                increment(dices, 4)
-            }
-            FIVES -> {
-                increment(dices, 5)
-            }
-            SIXES -> {
-                increment(dices, 6)
             }
             FULL_HOUSE -> {
                 val groups: Map<Int, Int> = dices.toList().groupingBy { it }.eachCount()
