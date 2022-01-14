@@ -8,7 +8,7 @@ object Yacht {
                 if (dices.distinct().size == 1) 50 else 0
             }
             ONES, TWOS, THREES, FOURS, FIVES, SIXES -> {
-                increment(dices, category.ordinal)
+                dices.filter { it == category.ordinal }.sum()
             }
             FULL_HOUSE -> {
                 val groups: Map<Int, Int> = dices.toList().groupingBy { it }.eachCount()
@@ -26,26 +26,16 @@ object Yacht {
             LITTLE_STRAIGHT -> {
                 val groups = dices.sorted().toSet()
                 if (groups == setOf(1,2,3,4,5)) 30 else 0
-                //checkStraight(groups, 1, 5)
             }
             BIG_STRAIGHT -> {
                 val groups = dices.sorted().toSet()
                 if (groups == setOf(2,3,4,5,6)) 30 else 0
-                //checkStraight(groups, 2, 6)
             }
             CHOICE -> {
                 dices.sum()
             }
         }
     }
-
-    private fun checkStraight(groups: List<Int>, firstNum: Int, lastNum: Int) =
-        if (groups.first() != firstNum || groups.last() != lastNum) 0
-        else {
-            val checkingList = groups.windowed(2, 1)
-            val checkSet = checkingList.map { it.last().minus(it.first()) == 1 }.toSet()
-            if (checkSet.size == 1 && checkSet.contains(true)) 30 else 0
-        }
 
     private fun increment(dices: IntArray, num: Int): Int {
         val score = dices.fold(0) { acc, i ->
