@@ -11,11 +11,7 @@ object Yacht {
                 dices.filter { it == category.ordinal }.sum()
             }
             FULL_HOUSE -> {
-                val groups: Map<Int, Int> = dices.toList().groupingBy { it }.eachCount()
-                val score = if (groups.containsValue(3)) dices.fold(0) {
-                    sum, element -> sum + element
-                } else 0
-                score
+                if (dices.groupBy { it }.values.map { it.size }.toSet() == setOf(2, 3)) dices.sum() else 0
             }
             FOUR_OF_A_KIND -> {
                 val groups: Map<Int, Int> = dices.toList().groupingBy { it }.eachCount()
@@ -35,12 +31,5 @@ object Yacht {
                 dices.sum()
             }
         }
-    }
-
-    private fun increment(dices: IntArray, num: Int): Int {
-        val score = dices.fold(0) { acc, i ->
-            if (i == num) acc + i else acc
-        }
-        return score
     }
 }
