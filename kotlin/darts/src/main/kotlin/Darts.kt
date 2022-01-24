@@ -1,4 +1,3 @@
-import kotlin.math.hypot
 import kotlin.math.pow
 import kotlin.math.sqrt
 
