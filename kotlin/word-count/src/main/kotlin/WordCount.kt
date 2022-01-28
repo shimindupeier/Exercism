@@ -7,6 +7,6 @@ object WordCount {
         val removeNewLine = phrase.replace("\\n".toRegex(), "")
         val removePunct = removeNewLine.replace(regexPunct, " ")
         val justAlphaNum = removePunct.split(" ")
-        return justAlphaNum.groupingBy { it }.eachCount()
+        return justAlphaNum.filterNot { it.isBlank() }.groupingBy { it }.eachCount()
     }
 }

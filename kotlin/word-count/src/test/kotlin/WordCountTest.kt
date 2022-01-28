@@ -44,7 +44,6 @@ class WordCountTest {
         "three" to 1
     )
 
-    @Ignore
     @Test
     fun `punctuation is ignored`() = assertWordCountEqual(
         "car: carpet as java: javascript!!&@\$%^&",
