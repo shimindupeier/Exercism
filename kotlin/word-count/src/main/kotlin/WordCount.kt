@@ -3,6 +3,7 @@ object WordCount {
 
     fun phrase(phrase: String): Map<String, Int> {
         phrase.lowercase()
-        return phrase.split(" ").groupingBy { it }.eachCount()
+        val regex = Regex("\\s|\\p{Punct}")
+        return phrase.split(regex).groupingBy { it }.eachCount()
     }
 }

@@ -10,7 +10,6 @@ class WordCountTest {
         "word" to 1
     )
 
-    @Ignore
     @Test
     fun `one of each word`() = assertWordCountEqual(
         "one of each",
@@ -19,7 +18,6 @@ class WordCountTest {
         "each" to 1
     )
 
-    @Ignore
     @Test
     fun `multiple occurrences of a word`() = assertWordCountEqual(
         "one fish two fish red fish blue fish",
@@ -30,7 +28,6 @@ class WordCountTest {
         "blue" to 1
     )
 
-    @Ignore
     @Test
     fun `cramped list`() = assertWordCountEqual(
         "one,two,three",
