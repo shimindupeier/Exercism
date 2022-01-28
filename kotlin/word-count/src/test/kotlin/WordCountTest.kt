@@ -36,7 +36,6 @@ class WordCountTest {
         "three" to 1
     )
 
-    @Ignore
     @Test
     fun `expanded list`() = assertWordCountEqual(
         "one,\ntwo,\nthree",
