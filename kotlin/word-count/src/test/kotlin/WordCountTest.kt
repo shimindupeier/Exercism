@@ -79,7 +79,6 @@ class WordCountTest {
         "cry" to 1
     )
 
-    @Ignore
     @Test
     fun `quotations are allowed`() = assertWordCountEqual(
         "Joe can't tell between 'large' and large.",
@@ -91,7 +90,6 @@ class WordCountTest {
         "and" to 1
     )
 
-    @Ignore
     @Test
     fun `heading substring`() = assertWordCountEqual(
         "Joe can't tell between app, apple and a.",
@@ -105,7 +103,6 @@ class WordCountTest {
         "a" to 1
     )
 
-    @Ignore
     @Test
     fun `multiple spaces`() = assertWordCountEqual(
         " multiple   whitespaces",
@@ -113,7 +110,6 @@ class WordCountTest {
         "whitespaces" to 1
     )
 
-    @Ignore
     @Test
     fun `various separators`() =
         assertWordCountEqual(
