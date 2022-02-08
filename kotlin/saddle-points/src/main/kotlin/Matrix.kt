@@ -9,20 +9,21 @@ fun saddlePoints(sl: List<List<Int>>): Set<MatrixCoordinate> {
     else {
         var row : Int
         var col : Int
-        val returnSet : MutableSet<MatrixCoordinate> = mutableSetOf()
-        sl.forEach { list ->
-            val listMaxNumInd: Int = list.indexOf( list.maxOf { it } )
+        val resultSet : MutableSet<MatrixCoordinate> = mutableSetOf()
+
+        sl.forEach { item ->
+            val maxEleIndex: Int = item.indexOf( item.maxOf { it } )
             val slCol = sl
-            val temp = mutableListOf<Int>()
-            slCol.forEach { row2 ->
-                temp.add(row2[listMaxNumInd])
+            val colList = mutableListOf<Int>()
+            slCol.forEach { item ->
+                colList.add(item[maxEleIndex])
             }
-            val colMinNumInd = temp.indexOf(temp.minOf { it })
-            row = list.maxOf { it }
-            col = temp.minOf { it }
+            val minEleIndex = colList.indexOf(colList.minOf { it })
+            row = item.maxOf { it }
+            col = colList.minOf { it }
             if (col == row)
-                returnSet.add(MatrixCoordinate(colMinNumInd+1, listMaxNumInd+1))
+                resultSet.add(MatrixCoordinate(minEleIndex+1, maxEleIndex+1))
         }
-        return returnSet
+        return resultSet
     }
 }

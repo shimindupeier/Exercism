@@ -20,7 +20,6 @@ class MatrixTest {
             )
         )
 
-    @Ignore
     @Test
     fun `no saddle points for empty matrix`() =
         assertSaddlePointsEqual(
@@ -28,7 +27,6 @@ class MatrixTest {
             emptySet()
         )
 
-    @Ignore
     @Test
     fun `no saddle points for nonempty matrix`() =
         assertSaddlePointsEqual(
@@ -42,7 +40,6 @@ class MatrixTest {
             emptySet()
         )
 
-    @Ignore
     @Test
     fun `multiple saddle points in a column`() =
         assertSaddlePointsEqual(
