@@ -7,23 +7,23 @@ class Matrix(saddleList: List<List<Int>>) {
 fun saddlePoints(sl: List<List<Int>>): Set<MatrixCoordinate> {
     return if (sl.contains(emptyList())) emptySet()
     else {
-        var row : Int
-        var col : Int
-        val resultSet : MutableSet<MatrixCoordinate> = mutableSetOf()
+        val resultSet: MutableSet<MatrixCoordinate> = mutableSetOf()
 
-        sl.forEach { item ->
-            val maxEleIndex: Int = item.indexOf( item.maxOf { it } )
-            val slCol = sl
+        sl.forEach { list ->
+            val maxInt = list.maxOf { it }
             val colList = mutableListOf<Int>()
-            slCol.forEach { item ->
-                colList.add(item[maxEleIndex])
+            list.forEachIndexed { index, value ->
+                if (value == maxInt) {
+                    sl.forEach { item -> colList.add(item[index]) }
+                    val minInt = colList.minOf { it }
+                    colList.forEachIndexed { colInd, colValue ->
+                        if (colValue == minInt && value == colValue) {
+                            resultSet.add(MatrixCoordinate(colInd + 1, index + 1))
+                        }
+                    }
+                }
             }
-            val minEleIndex = colList.indexOf(colList.minOf { it })
-            row = item.maxOf { it }
-            col = colList.minOf { it }
-            if (col == row)
-                resultSet.add(MatrixCoordinate(minEleIndex+1, maxEleIndex+1))
         }
-        return resultSet
+        resultSet
     }
 }
