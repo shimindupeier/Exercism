@@ -57,7 +57,6 @@ class MatrixTest {
             )
         )
 
-    @Ignore
     @Test
     fun `multiple saddle points in a row`() =
         assertSaddlePointsEqual(
@@ -75,7 +74,6 @@ class MatrixTest {
             )
         )
 
-    @Ignore
     @Test
     fun `saddle point in bottom right corner`() =
         assertSaddlePointsEqual(
@@ -91,7 +89,6 @@ class MatrixTest {
             )
         )
 
-    @Ignore
     @Test
     fun `saddle points in a single column matrix`() =
         assertSaddlePointsEqual(
@@ -109,7 +106,6 @@ class MatrixTest {
             )
         )
 
-    @Ignore
     @Test
     fun `saddle points in a single row matrix`() =
         assertSaddlePointsEqual(
