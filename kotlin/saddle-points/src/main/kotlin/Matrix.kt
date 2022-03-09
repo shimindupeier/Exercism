@@ -12,7 +12,7 @@ class Matrix(saddleList: List<List<Int>>) {
                 null
         }
     }.toSet()
-    
+
 }
 
 fun saddlePoints(saddleList: List<List<Int>>): Set<MatrixCoordinate> {
