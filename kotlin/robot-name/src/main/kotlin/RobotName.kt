@@ -1,24 +1,33 @@
 class Robot {
     private var prevName = ""
 
-    init {
-        println("prev_name: $prevName")
-        println("name: $name")
+    companion object {
+        val generatedNames = mutableSetOf<String>()
     }
 
-    val name: String
-        get() = if (prevName.isEmpty()) {
+    private fun generateName() =
             ('A'..'Z').random().toString() +
                     ('A'..'Z').random().toString() +
                     ('0'..'9').random().toString() +
                     ('0'..'9').random().toString() +
                     ('0'..'9').random().toString()
+
+    private fun checkUniqueName(): String {
+        var generatedName = generateName()
+        while (generatedNames.contains(generatedName)) {
+            generatedName = generateName()
+        }
+        generatedNames.add(generatedName)
+        return generatedName
+    }
+
+    val name: String
+        get() = if (prevName.isEmpty()) {
+            checkUniqueName()
         } else prevName
 
     init {
         prevName = name
-        println("prev_name1: $prevName")
-        println("name1: $name")
     }
 
     fun reset() {
