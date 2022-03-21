@@ -11,7 +11,10 @@ class BankAccount {
         }
 
     fun adjustBalance(amount: Long){
-        openingBalance += amount
+        if (accOpen)
+            openingBalance += amount
+        else
+            throw IllegalStateException()
     }
 
     fun close() {

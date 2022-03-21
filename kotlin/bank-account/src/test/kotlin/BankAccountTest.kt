@@ -33,7 +33,6 @@ class BankAccountTest {
         assertFailsWith(IllegalStateException::class) { account.balance }
     }
 
-    @Ignore
     @Test
     fun closedAccountCannotBeAdjusted() {
         val account = BankAccount()
