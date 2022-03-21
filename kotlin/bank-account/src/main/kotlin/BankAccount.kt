@@ -1,14 +1,20 @@
 class BankAccount {
     private var openingBalance: Long = 0
+    private var accOpen = true
 
     val balance: Long
-        get() = this.openingBalance
+        get() {
+            return if (accOpen)
+                this.openingBalance
+            else
+                throw IllegalStateException()
+        }
 
     fun adjustBalance(amount: Long){
         openingBalance += amount
     }
 
     fun close() {
-        TODO("Implement the function to complete the task")
+        accOpen = false
     }
 }
