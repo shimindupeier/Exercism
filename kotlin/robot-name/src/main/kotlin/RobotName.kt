@@ -1,36 +1,36 @@
 class Robot {
-    private var prevName = ""
+    private var robotName = ""
 
     companion object {
-        val generatedNames = mutableSetOf<String>()
+        val setOfGeneratedNames = mutableSetOf<String>()
     }
 
-    private fun generateName() =
-            ('A'..'Z').random().toString() +
-                    ('A'..'Z').random().toString() +
-                    ('0'..'9').random().toString() +
-                    ('0'..'9').random().toString() +
-                    ('0'..'9').random().toString()
-
-    private fun checkUniqueName(): String {
-        var generatedName = generateName()
-        while (generatedNames.contains(generatedName)) {
-            generatedName = generateName()
-        }
-        generatedNames.add(generatedName)
-        return generatedName
+    init {
+        robotName = name
     }
 
     val name: String
-        get() = if (prevName.isEmpty()) {
-            checkUniqueName()
-        } else prevName
+        get() = robotName.ifEmpty {
+            generateUniqueName()
+        }
 
-    init {
-        prevName = name
+    private fun generateUniqueName(): String {
+        var generatedName = generateName()
+        while (setOfGeneratedNames.contains(generatedName)) {
+            generatedName = generateName()
+        }
+        setOfGeneratedNames.add(generatedName)
+        return generatedName
     }
 
+    private fun generateName() = getRandomAlphabet() + getRandomNum()
+
+    private fun getRandomAlphabet() = List(2) {('A'..'Z').random()}.joinToString("")
+    private fun getRandomNum() = List(3) {('0'..'9').random()}.joinToString("")
+
+
+
     fun reset() {
-        prevName = ""
+        robotName = ""
     }
 }
