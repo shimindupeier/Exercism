@@ -4,17 +4,14 @@ class BankAccount {
 
     var balance: Long = 0
         get() {
-            return if (accOpen)
-                field
-            else
-                throw IllegalStateException()
+            check(accOpen)
+            return field
         }
 
-    fun adjustBalance(amount: Long){
-        if (accOpen)
-            this.balance += amount
-        else
-            throw IllegalStateException()
+    @Synchronized
+    fun adjustBalance(amount: Long) {
+        check(accOpen)
+        this.balance += amount
     }
 
     fun close() {
