@@ -1,18 +1,18 @@
 class BankAccount {
-    private var openingBalance: Long = 0
+
     private var accOpen = true
 
-    val balance: Long
+    var balance: Long = 0
         get() {
             return if (accOpen)
-                this.openingBalance
+                field
             else
                 throw IllegalStateException()
         }
 
     fun adjustBalance(amount: Long){
         if (accOpen)
-            openingBalance += amount
+            this.balance += amount
         else
             throw IllegalStateException()
     }
