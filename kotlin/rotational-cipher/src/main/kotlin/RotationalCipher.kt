@@ -1,8 +1,13 @@
-class RotationalCipher {
+class RotationalCipher(k: Int) {
 
     // TODO: Implement proper constructor
+    private val key = k
 
     fun encode(text: String): String {
-        TODO("Implement this function to complete the task")
+        return if (key == 0 || key == 26) text
+        else {
+
+            ""
+        }
     }
 }
