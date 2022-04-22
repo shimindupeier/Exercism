@@ -13,7 +13,13 @@ class RotationalCipherTest {
     @Test
     fun testRotateLowercaseABy1() {
         val cipher = RotationalCipher(1)
-        assertEquals("bb", cipher.encode("aa"))
+        assertEquals("b, b", cipher.encode("a, a"))
+    }
+
+    @Test
+    fun testRotateLowercaseABy1WithSpace() {
+        val cipher = RotationalCipher(1)
+        assertEquals("b b", cipher.encode("a a"))
     }
 
     @Test
