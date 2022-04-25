@@ -14,23 +14,23 @@ class RotationalCipher(k: Int) {
         return if (key == 0 || key == 26) text
         else {
             val textCharArray = text.toCharArray()
-            val tmp = textCharArray.joinToString("") { getCodedKey(it, key) }
-            tmp
+            val codedStr = textCharArray.joinToString("") { getCodedKey(it, key) }
+            codedStr
         }
 
     }
 
     private fun getCodedKey(charText: Char, key: Int): String {
-        val encodedLetter: String
-        val encodedKey: Int
+        val codedLetter: String
+        val codedKey: Int
 
         if (charText.isLetter()) {
-            encodedKey = (key + Alphabet.valueOf(charText.uppercase()).letterKey).mod(26)
-            encodedLetter = Alphabet.values()[encodedKey].toString()
+            codedKey = (key + Alphabet.valueOf(charText.uppercase()).letterKey).mod(26)
+            codedLetter = Alphabet.values()[codedKey].toString()
         } else {
-            encodedLetter = charText.toString()
+            codedLetter = charText.toString()
         }
-        return if (charText.isUpperCase()) encodedLetter
-        else encodedLetter.lowercase()
+        return if (charText.isUpperCase()) codedLetter
+        else codedLetter.lowercase()
     }
 }
