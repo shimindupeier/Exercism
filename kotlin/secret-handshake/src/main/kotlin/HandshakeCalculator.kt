@@ -1,8 +1,8 @@
 object HandshakeCalculator {
     fun calculateHandshake(number: Int): List<Signal> {
         val binaryNum = Integer.toBinaryString(number).map { it.toString().toInt() }.toList()
-        println("binaryNum: $binaryNum")
         var signalList: MutableList<Signal> = mutableListOf()
+
         binaryNum.reversed().forEachIndexed { index, v ->
             when (index) {
                 0 -> if (v == 1) signalList.add(Signal.WINK)
