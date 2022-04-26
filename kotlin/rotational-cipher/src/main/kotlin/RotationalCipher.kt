@@ -6,6 +6,9 @@ enum class Alphabet(val letterKey: Int) {
     V(21), W(22), X(23), Y(24), Z(25)
 }
 
+//can also read the code into an list and use the index to get the coded key. This way, there isn't a need for a
+//separate get coded key functon
+
 class RotationalCipher(k: Int) {
 
     private val key = k
