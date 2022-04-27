@@ -7,7 +7,6 @@ class Deque<T> {
 
     fun push(value: T) {
         val newNode = Node(value, head, tail)
-        println("push $value")
         if (tail == null) {
             tail = newNode
             head = newNode
@@ -19,7 +18,6 @@ class Deque<T> {
 
     fun pop(): T? {
         val result = tail?.value
-        println("pop $result")
         tail = tail?.prev
 
         return result
@@ -27,7 +25,6 @@ class Deque<T> {
 
     fun unshift(value: T) {
         val newNode = Node(value, head, tail)
-        println("unshift $value")
         if (head == null) {
             head = newNode
             tail = newNode
@@ -39,9 +36,7 @@ class Deque<T> {
 
     fun shift(): T? {
         val result = head?.value
-        println("shift $result")
         head = head?.next
-println("${head?.value}")
         return result
     }
 }
