@@ -1,38 +1,47 @@
 class Deque<T> {
 
-    private data class Node<T>(val value: T, val next: Node<T>? = null, var prev: Node<T>? = null)
+    private data class Node<T>(val value: T, var next: Node<T>?, var prev: Node<T>?)
 
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
-    //private var size: Int = 0
 
     fun push(value: T) {
-        head = Node(value, head)
+        val newNode = Node(value, head, tail)
+        println("push $value")
         if (tail == null) {
-            tail = head?.next
-            //tail?.prev = head
+            tail = newNode
+            head = newNode
         }
-        println("head $head")
+        newNode.prev = tail
+        tail?.next = newNode
+        tail = newNode
     }
 
     fun pop(): T? {
-        val result = head?.value
-        head = head?.next
-        println(result)
+        val result = tail?.value
+        println("pop $result")
+        tail = tail?.prev
+
         return result
     }
 
     fun unshift(value: T) {
-        tail = Node(value, tail)
+        val newNode = Node(value, head, tail)
+        println("unshift $value")
         if (head == null) {
-            head = tail?.next
+            head = newNode
+            tail = newNode
         }
+        head?.prev = newNode
+        newNode.next = head
+        head = newNode
     }
 
     fun shift(): T? {
         val result = head?.value
-        head?.prev = null
         println("shift $result")
+        head = head?.next
+println("${head?.value}")
         return result
     }
 }
