@@ -1,10 +1,6 @@
 object Isogram {
 
-    fun isIsogram(input: String): Boolean {
+    fun isIsogram(input: String) = input.filter { it.isLetter() }
+        .let { it.lowercase().toSet().size == it.length }
 
-        val newInput = input.lowercase().replace("[ -]".toRegex(), "")
-        val strSet = newInput.toSet()
-
-        return newInput.length == strSet.size
-    }
 }
