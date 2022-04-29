@@ -5,7 +5,7 @@ object BinarySearch {
 
         while (left <= right) {
             val mid = (left + right)/2
-            val target = list[(left + right)/2]
+            val target = list[mid]
             if (item == target)
                 return mid
             else if (item < target)
