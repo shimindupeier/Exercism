@@ -10,11 +10,7 @@ object PigLatin {
             when {
                 word.first() in vowel || word.take(2) in vowelSound -> word + "ay"
                 word.first() in consonant -> {
-                    /*else if (word.startsWith("y"))
-                        word.drop(1) + word.take(1) + "ay"*/
-                    if (word.slice(1..1) == "y")
-                        word.drop(1) + word.take(1) + "ay"
-                    else if (word.contains('y'))
+                    if (word.contains('y') && word.indexOf('y') != 0)
                         word.dropWhile { it in consonant && it != 'y' }
                             .plus(word.takeWhile { it in consonant && it != 'y' })
                             .plus("ay")
