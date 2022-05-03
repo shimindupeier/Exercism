@@ -21,8 +21,8 @@ object PigLatin {
                         .plus(phrase.takeWhile { it in consonantList && it != 'y' })
                         .plus("ay")
                 else if (phrase.contains("qu")) {
-                    val indexofU = phrase.indexOf("u")
-                    phrase.substring(indexofU+1, phrase.length) + phrase.substring(0, indexofU+1) + "ay"
+                    val indexOfU = phrase.indexOf("u")
+                    phrase.substring(indexOfU+1, phrase.length) + phrase.substring(0, indexOfU+1) + "ay"
                 } else
                     phrase.dropWhile { it in consonantList }
                         .plus(phrase.takeWhile { it in consonantList })
