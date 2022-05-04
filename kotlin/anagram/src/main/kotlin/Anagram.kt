@@ -1,12 +1,15 @@
 class Anagram(val source: String) {
 
     fun match(anagrams: Collection<String>): Set<String> {
-        //check for edge cases rid of words same as source
-        //check for when there is no anagram
         val filterAnagram = anagrams.filterNot { it.equals(source, true)}
             .filter { it.length == source.length }
-            .filter { it.lowercase().toSet() == source.lowercase().toSet() }
+            .filter { it.lowercase().toList().containsAll(source.lowercase().toList()) }
 
-        return filterAnagram.toSet()
+        val sourceGrouping = source.lowercase().groupBy { it }
+        val anagramGrouping = filterAnagram.filter { item ->
+            val tmp = item.lowercase().groupBy { it }
+            tmp == sourceGrouping }
+
+        return anagramGrouping.toSet()
     }
 }
