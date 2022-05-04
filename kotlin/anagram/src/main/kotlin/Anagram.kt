@@ -5,7 +5,7 @@ class Anagram(val source: String) {
         //check for when there is no anagram
         val filterAnagram = anagrams.filterNot { it.equals(source, true)}
             .filter { it.length == source.length }
-            .filter { it.toSet() == source.toSet() }
+            .filter { it.lowercase().toSet() == source.lowercase().toSet() }
 
         return filterAnagram.toSet()
     }
