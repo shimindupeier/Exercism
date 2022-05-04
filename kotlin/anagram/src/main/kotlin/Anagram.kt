@@ -4,7 +4,8 @@ class Anagram(val source: String) {
         //check for edge cases rid of words same as source
         //check for when there is no anagram
         val filterAnagram = anagrams.filterNot { it.equals(source, true)}
-            .filter { it.toSet()==source.toSet() }
+            .filter { it.length == source.length }
+            .filter { it.toSet() == source.toSet() }
 
         return filterAnagram.toSet()
     }
