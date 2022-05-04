@@ -7,8 +7,8 @@ class Anagram(private val source: String) {
             .filter { item ->
                 val tmp = item.lowercase().groupBy { it }
                 tmp == source.lowercase().groupBy { it }
-            }
+            }.toSet()
 
-        return filterAnagram.toSet()
+        return filterAnagram
     }
 }
