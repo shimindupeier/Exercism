@@ -9,7 +9,7 @@ enum class BobResponses(val responses: String) {
 object Bob {
     fun hey(input: String): String {
 
-        val bobResponses = when {
+        return when {
             input.trim().endsWith("?") -> {
                 if (input.matches("[A-Z\\s]+\\?".toRegex()))
                     BobResponses.CALM.responses
@@ -17,7 +17,6 @@ object Bob {
                     BobResponses.SURE.responses
             }
             input.trim().matches("[\\dA-Z\\s]+[^?]+".toRegex()) -> {
-                BobResponses.WHOA.responses
                 if (input.matches("[0-9, ]+".toRegex()) || input.contains("[a-z]".toRegex()))
                     BobResponses.WHATEVER.responses
                 else
@@ -26,6 +25,5 @@ object Bob {
             input.trim().isEmpty() -> BobResponses.FINE.responses
             else -> BobResponses.WHATEVER.responses
         }
-        return bobResponses
     }
 }
