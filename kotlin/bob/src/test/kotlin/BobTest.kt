@@ -21,7 +21,6 @@ class BobTest {
         assertEquals("Whoa, chill out!", Bob.hey("FCECDFCAAB"))
     }
 
-    @Ignore
     @Test
     fun askingAQuestion() {
         assertEquals("Sure.", Bob.hey("Does this cryogenic chamber make me look fat?"))
@@ -39,13 +38,11 @@ class BobTest {
         assertEquals("Sure.", Bob.hey("fffbbcbeab?"))
     }
 
-    @Ignore
     @Test
     fun talkingForcefully() {
         assertEquals("Whatever.", Bob.hey("Let's go make out behind the gym!"))
     }
 
-    @Ignore
     @Test
     fun usingAcronymsInRegularSpeech() {
         assertEquals("Whatever.", Bob.hey("It's OK if you don't want to go to the DMV."))
@@ -63,7 +60,6 @@ class BobTest {
         assertEquals("Whoa, chill out!", Bob.hey("1, 2, 3 GO!"))
     }
 
-    @Ignore
     @Test
     fun noLetters() {
         assertEquals("Whatever.", Bob.hey("1, 2, 3"))
@@ -87,7 +83,6 @@ class BobTest {
         assertEquals("Whoa, chill out!", Bob.hey("I HATE THE DMV"))
     }
 
-    @Ignore
     @Test
     fun statementContainingQuestionMark() {
         assertEquals("Whatever.", Bob.hey("Ending with ? means a question."))
