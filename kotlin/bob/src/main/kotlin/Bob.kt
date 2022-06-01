@@ -1,17 +1,31 @@
 enum class BobResponses(val responses: String) {
     SURE("Sure."),
     WHOA("Whoa, chill out!"),
-    CALMDOWN("Calm down, I know what I'm doing!"),
+    CALM("Calm down, I know what I'm doing!"),
     FINE("Fine. Be that way!"),
     WHATEVER("Whatever.")
 }
 
 object Bob {
     fun hey(input: String): String {
-        val regexWhatever = Regex("[\\w+\\s\\W]+[^?|\\s]")
-        val regexSure = Regex("[\\w+\\s\\W]+[?|\\s]")
-        return if (input.matches(regexWhatever)) BobResponses.WHATEVER.responses
-        else if (input.matches(regexSure)) BobResponses.SURE.responses
-        else ""
+
+        val bobResponses = when {
+            input.trim().endsWith("?") -> {
+                if (input.matches("[A-Z\\s]+\\?".toRegex()))
+                    BobResponses.CALM.responses
+                else
+                    BobResponses.SURE.responses
+            }
+            input.trim().matches("[\\dA-Z\\s]+[^?]+".toRegex()) -> {
+                BobResponses.WHOA.responses
+                if (input.matches("[0-9, ]+".toRegex()) || input.contains("[a-z]".toRegex()))
+                    BobResponses.WHATEVER.responses
+                else
+                    BobResponses.WHOA.responses
+            }
+            input.trim().isEmpty() -> BobResponses.FINE.responses
+            else -> BobResponses.WHATEVER.responses
+        }
+        return bobResponses
     }
 }
