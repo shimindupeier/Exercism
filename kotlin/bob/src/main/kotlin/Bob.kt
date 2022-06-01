@@ -8,8 +8,8 @@ enum class BobResponses(val responses: String) {
 
 object Bob {
     fun hey(input: String): String {
-        val regexWhatever = Regex("[\\w+\\s\\W]+[^?]")
-        val regexSure = Regex("[\\w+\\s\\W]+\\?")
+        val regexWhatever = Regex("[\\w+\\s\\W]+[^?|\\s]")
+        val regexSure = Regex("[\\w+\\s\\W]+[?|\\s]")
         return if (input.matches(regexWhatever)) BobResponses.WHATEVER.responses
         else if (input.matches(regexSure)) BobResponses.SURE.responses
         else ""

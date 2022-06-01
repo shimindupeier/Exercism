@@ -64,7 +64,6 @@ class BobTest {
         assertEquals("Whatever.", Bob.hey("1, 2, 3"))
     }
 
-    @Ignore
     @Test
     fun questionWithNoLetters() {
         assertEquals("Sure.", Bob.hey("4?"))
@@ -87,13 +86,11 @@ class BobTest {
         assertEquals("Whatever.", Bob.hey("Ending with ? means a question."))
     }
 
-    @Ignore
     @Test
     fun nonLettersWithQuestion() {
         assertEquals("Sure.", Bob.hey(":) ?"))
     }
 
-    @Ignore
     @Test
     fun prattlingOn() {
         assertEquals("Sure.", Bob.hey("Wait! Hang on. Are you going to be OK?"))
@@ -129,7 +126,6 @@ class BobTest {
         assertEquals("Whatever.", Bob.hey("         hmmmmmmm..."))
     }
 
-    @Ignore
     @Test
     fun endingWithWhitespace() {
         assertEquals("Sure.", Bob.hey("Okay if like my  spacebar  quite a bit?   "))
