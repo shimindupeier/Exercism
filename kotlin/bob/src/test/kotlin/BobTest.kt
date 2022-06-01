@@ -26,7 +26,6 @@ class BobTest {
         assertEquals("Sure.", Bob.hey("Does this cryogenic chamber make me look fat?"))
     }
 
-    @Ignore
     @Test
     fun askingANumericQuestion() {
         assertEquals("Sure.", Bob.hey("You are, what, like 15?"))
