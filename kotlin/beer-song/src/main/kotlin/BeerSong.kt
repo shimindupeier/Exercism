@@ -1,9 +1,10 @@
 object BeerSong {
     fun verses(startBottles: Int, takeDown: Int): String {
-        var song: String = ""
+        var song = ""
         for (i in startBottles downTo takeDown) {
-            song = "${ln1Phrase1(i)} ${ln1Phrase2(i)}" +
+            song += "${ln1Phrase1(i)} ${ln1Phrase2(i)}" +
                     "${ln2Phrase1(i)} ${ln2Phrase2(i - 1)}"
+            if (i > takeDown) song += "\n"
         }
         return song
     }
