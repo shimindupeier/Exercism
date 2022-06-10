@@ -4,9 +4,8 @@ class IsbnVerifier {
         val numberList = number.split("(?=\\w)(?<=\\w)|-".toRegex()).toMutableList()
 
         return if (inputValid(numberList)) {
-            var count = numberList.size
-            val tmp = numberList.map { it }.fold(0) { sum, i ->
-                sum + (if (i=="X") 10 else i.toInt()) * (count--)
+            val tmp = numberList.map { it }.foldIndexed(0) { ind, sum, i ->
+                sum + (if (i=="X") 10 else i.toInt()) * (10-ind)
             }
             tmp.mod(11) == 0
         } else false
