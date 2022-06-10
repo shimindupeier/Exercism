@@ -3,18 +3,18 @@ class IsbnVerifier {
     fun isValid(number: String): Boolean {
         val numberList = number.split("(?=\\w)(?<=\\w)|-".toRegex()).toMutableList()
 
-        return if (numberList.size != 10
-            || (numberList.last() != "X" && numberList.last().matches( "[a-zA-Z]".toRegex()))
-            || numberList.dropLast(1).any { it.matches( "[a-zA-Z]".toRegex()) }
-        ) false
-        else {
-            if (numberList.last() == "X") numberList[numberList.lastIndex] = "10"
+        return if (inputValid(numberList)) {
             var count = numberList.size
-
-            val tmp = numberList.map { it.toInt() }.fold(0) { sum, i ->
-                sum + i * (count--)
+            val tmp = numberList.map { it }.fold(0) { sum, i ->
+                sum + (if (i=="X") 10 else i.toInt()) * (count--)
             }
             tmp.mod(11) == 0
-        }
+        } else false
+    }
+
+    private fun inputValid(input: List<String>): Boolean {
+        return !(input.size != 10
+                || (input.last() != "X" && input.last().matches( "[a-zA-Z]".toRegex()))
+                || input.dropLast(1).any { it.matches( "[a-zA-Z]".toRegex()) })
     }
 }
