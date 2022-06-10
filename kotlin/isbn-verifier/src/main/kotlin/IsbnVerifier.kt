@@ -1,7 +1,7 @@
 class IsbnVerifier {
 
     fun isValid(number: String): Boolean {
-        val numberList = number.split("(?=\\d)(?<=\\d)|-|(?=X)(?<=X)".toRegex()).toMutableList()
+        val numberList = number.split("(?=\\w)(?<=\\w)|-".toRegex()).toMutableList()
 
         return if (numberList.size != 10
             || (numberList.last() != "X" && numberList.last().matches( "[a-zA-Z]".toRegex()))
